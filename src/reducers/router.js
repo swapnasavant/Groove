@@ -1,4 +1,4 @@
-
+const initialRoute = { path: '', query: {} };
 const initialState = { route: initialRoute };
 
 export default function router(state = initialState, action) {

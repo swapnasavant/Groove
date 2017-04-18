@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -41,24 +41,17 @@ const styles = StyleSheet.create({
 
 class App extends Component {
 
-  constructor() {
-    super();
-    this.handleButtonPress = this.handleButtonPress.bind(this);
-  }
-
   render() {
-        return (
-          <View style={styles.container}>
-            <View style={styles.inputsContainer}>
-              <TouchableHighlight style={[styles.fullWidthButton, styles.firstWidthButton]} >
-                <Text style={styles.fullWidthButtonText}>Hello</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        );
+    return (
+      <View style={styles.container}>
+        <View style={styles.inputsContainer}>
+          <TouchableHighlight style={[styles.fullWidthButton, styles.firstWidthButton]} >
+            <Text style={styles.fullWidthButtonText}>Hello</Text>
+          </TouchableHighlight>
+        </View>
+      </View>
+    );
   }
 }
-
-App.propTypes = propTypes;
 
 export default App;
