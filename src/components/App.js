@@ -46,7 +46,7 @@ class App extends Component {
       <View style={styles.container}>
         <View style={styles.inputsContainer}>
           <TouchableHighlight style={[styles.fullWidthButton, styles.firstWidthButton]} >
-            <Text style={styles.fullWidthButtonText}>Hello</Text>
+            <Text style={styles.fullWidthButtonText}>Groove</Text>
           </TouchableHighlight>
         </View>
       </View>
