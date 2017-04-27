@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
@@ -54,7 +55,13 @@ class Steps extends Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.toolbar}>
-          <Text style={styles.toolbarButton}>Home</Text>
+          <TouchableOpacity
+            onPress={() => this.handleButtonPress('hard')}
+          >
+            <Text style={styles.toolbarButton} >
+                Home
+            </Text>
+          </TouchableOpacity>
           <Text style={styles.toolbarTitle}>Home address</Text>
           <Text style={styles.toolbarButton}>Notify</Text>
         </View>
