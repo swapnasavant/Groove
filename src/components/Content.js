@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   fullWidthButton: {
-    backgroundColor: '#C56C39',
+    backgroundColor: '#FF4331',
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',

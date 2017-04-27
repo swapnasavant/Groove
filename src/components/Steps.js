@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   Text,
-  TouchableHighlight,
   View,
 } from 'react-native';
 
@@ -13,50 +12,29 @@ const propTypes = {
 };
 
 const styles = StyleSheet.create({
-  inputsContainer: {
+  toolbar: {
+    backgroundColor: '#FF4331',
+    paddingTop: 30,
+    paddingBottom: 10,
+    flexDirection: 'row',
+  },
+  toolbarButton: {
+    width: 50,
+    color: '#fff',
+    textAlign: 'center',
+  },
+  toolbarTitle: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
     flex: 1,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 150,
   },
-  buttonContainer: {
+  mainContainer: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#FFFFFF',
   },
-  firstWidthButton: {
-    marginTop: 150,
-  },
-  consecutiveButton: {
-    marginTop: 5,
-  },
-  fullWidthButton: {
-    backgroundColor: '#C56C39',
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  fullWidthButtonText: {
-    fontSize: 15,
-    color: 'white',
-  },
-  input: {
-    paddingLeft: 15,
-    height: 40,
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    backgroundColor: 'white',
-  },
-  img: {
-    width: 150,
-    height: 150,
-  },
-  container: {
+  content: {
+    backgroundColor: '#ebeef0',
     flex: 1,
-    backgroundColor: '#f0f0f0',
-    alignItems: 'stretch',
-    padding: 20,
   },
 });
 
@@ -74,14 +52,14 @@ class Steps extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <TouchableHighlight
-            onPress={() => this.handleButtonPress('hard')}
-            style={[styles.consecutiveButton, styles.fullWidthButton]}
-          >
-            <Text style={styles.fullWidthButtonText}>Login</Text>
-          </TouchableHighlight>
+      <View style={styles.mainContainer}>
+        <View style={styles.toolbar}>
+          <Text style={styles.toolbarButton}>Home</Text>
+          <Text style={styles.toolbarTitle}>Home address</Text>
+          <Text style={styles.toolbarButton}>Notify</Text>
+        </View>
+        <View style={styles.content}>
+          <Text>This is the content</Text>
         </View>
       </View>
     );
