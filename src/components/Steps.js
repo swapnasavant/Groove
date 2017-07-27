@@ -7,7 +7,8 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import LinearGradient from 'react-native-linear-gradient';
+import TimeLine from './TimeLine';
 import { navigateTo } from '../actions/navigate';
 
 const propTypes = {
@@ -33,8 +34,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF4331',
     flexDirection: 'row',
     paddingLeft: 50,
-    borderBottomColor: '#FFFFFF',
-    borderBottomWidth: 1,
   },
   inputButtonHome: {
     paddingLeft: 10,
@@ -59,6 +58,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
   },
+  linearGradient: {
+    paddingTop: 30,
+    flexDirection: 'row',
+  },
   headerTitle: {
     color: '#fff',
     fontSize: 10,
@@ -71,7 +74,11 @@ const styles = StyleSheet.create({
   },
   content: {
     backgroundColor: '#ebeef0',
-    flex: 1,
+    paddingTop: 30,
+    paddingBottom: 10,
+    flexDirection: 'row',
+    borderBottomColor: '#FFFFFF',
+    borderBottomWidth: 1,
   },
 });
 
@@ -88,8 +95,9 @@ class Steps extends Component {
   }
 
   render() {
-    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const { dispatch } = this.props;
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     return (
       <View style={styles.mainContainer}>
@@ -110,21 +118,27 @@ class Steps extends Component {
           </Text>
         </View>
         <View style={styles.toolbar}>
-            <Text style={[styles.inputButtonHome, styles.dayButton]} >
-               {new Date().getDate()}
-            </Text>
-            <Text style={styles.inputButtonHome} >
-               {days[new Date().getDay()]}
-            </Text>
-            <Text style={styles.headerTitle}>
-              Hi Jack,
-              You have a task.
-            </Text>
+          <Text style={[styles.inputButtonHome, styles.dayButton]} >
+             {new Date().getDate()}
+          </Text>
+          <Text style={styles.inputButtonHome} >
+             {days[new Date().getDay()]}
+          </Text>
+          <Text style={styles.headerTitle}>
+            Hi Jack,
+            You have a task.
+          </Text>
         </View>
         <View style={styles.toolbarAuto}>
           <Text style={styles.inputYear} >
               {monthNames[new Date().getMonth()]} {new Date().getFullYear()}
           </Text>
+        </View>
+        <LinearGradient colors={['#FF4331', '#FF4331', '#000000']} style={styles.linearGradient} />
+        <View style={styles.content}>
+          <TimeLine
+            dispatch={dispatch}
+          />
         </View>
       </View>
     );
