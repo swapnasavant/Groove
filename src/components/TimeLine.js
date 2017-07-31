@@ -1,14 +1,18 @@
-import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   ListView,
   Text,
   Image,
+  TouchableHighlight,
   TouchableOpacity,
   View,
 } from 'react-native';
+import React, { Component, PropTypes } from 'react';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+
+import Popover from './Popover';
+import Steps from './Steps';
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -29,8 +33,6 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     paddingBottom: 10,
     flexDirection: 'row',
-    borderBottomColor: '#FFFFFF',
-    borderBottomWidth: 1,
   },
   inputButtonHome: {
     paddingLeft: 10,
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     color: '#fff',
     textAlign: 'center',
-    backgroundColor: '#ebeef0',
+    backgroundColor: '#FFFFFF',
   },
   img: {
     width: 28,
@@ -79,17 +81,20 @@ class TimeLine extends Component {
   constructor() {
     super();
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.handleButtonPress = this.handleButtonPress.bind(this);
     this.state = {
       dataSource: ds.cloneWithRows([
         {
           time: 'Today',
           person: 'realtor',
           task: 'Open Escrow Account',
+          content: 'Please open an escrow account.',
         },
         {
           time: 'Tomorrow',
           person: 'buyer',
           task: 'Deposit 3% to escrow',
+          content: 'Withdraw cashier’s check for amount $45,000. Payable to “Orange Coast Title Company”. Notes should contain escrow number 12345. Hand over cashier’s check to realtor or escrow company.',
         },
         {
           time: '08/08/2017',
@@ -127,7 +132,84 @@ class TimeLine extends Component {
           task: 'Get the necessary data',
         },
       ]),
+      isVisible: false,
+      eleVisible: null,
+      buttonRect: {},
     };
+  }
+
+  handleButtonPress() {
+    const { dispatch } = this.props;
+  }
+
+  showPopover(ele) {
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
+    this[ele].measure((ox, oy, width, height, px, py) => {
+      this.setState({
+        isVisible: true,
+        eleVisible: ele,
+        dataSource: ds.cloneWithRows([
+          {
+            time: 'Today',
+            person: 'realtor',
+            task: 'Open Escrow Account',
+            content: 'Please open an escrow account.',
+          },
+          {
+            time: 'Tomorrow',
+            person: 'buyer',
+            task: 'Deposit 3% to escrow',
+            content: 'Withdraw cashier’s check for amount $45,000. Payable to “Orange Coast Title Company”. Notes should contain escrow number 12345. Hand over cashier’s check to realtor or escrow company.',
+          },
+          {
+            time: '08/08/2017',
+            person: 'realtor',
+            task: 'Title search and insurance',
+          },
+          {
+            time: '08/18/2017',
+            person: 'realtor',
+            task: 'Shop for mortgage',
+          },
+          {
+            time: '08/20/2017',
+            person: 'realtor',
+            task: 'Finalise a lender',
+          },
+          {
+            time: '08/26/2017',
+            person: 'realtor',
+            task: 'Fill in application',
+          },
+          {
+            time: '08/26/2017',
+            person: 'realtor',
+            task: 'Fill in application',
+          },
+          {
+            time: '08/26/2017',
+            person: 'realtor',
+            task: 'under writter task',
+          },
+          {
+            time: '08/29/2017',
+            person: 'realtor',
+            task: 'Get the necessary data',
+          },
+          {
+            time: '08/29/2017',
+            person: 'realtor',
+            task: 'Get what necessary data',
+          },
+        ]),
+        buttonRect: { x: px, y: py, width, height },
+      });
+    });
+  }
+
+  closePopover() {
+    this.setState({ isVisible: false });
   }
 
   render() {
@@ -138,26 +220,39 @@ class TimeLine extends Component {
           <ListView
             dataSource={this.state.dataSource}
             renderRow={(rowData) =>
-              <View style={styles.toolbarHeader}>
-                <TouchableOpacity
-                  onPress={() => this.handleButtonPress('hard')}
+              <View style={styles.container}>
+                <TouchableHighlight
+                  ref={(e) => { this[`${rowData.time}Wrapper`] = e; }}
+                  style={styles.button} onPress={this.showPopover.bind(this, `${rowData.time}Wrapper`)}
                 >
-                  <Text style={styles.inputButtonHome} >
-                    {rowData.time}
+                <View style={styles.toolbarHeader}>
+                  <TouchableOpacity                  >
+                    <Text style={styles.inputButtonHome} >
+                      {rowData.time}
+                    </Text>
+                  </TouchableOpacity>
+                  <Text style={styles.inputButtonNotify} >
+                    <Image
+                      style={styles.img}
+                      source={require(`../images/realtor.png`)}
+                    />
                   </Text>
-                </TouchableOpacity>
-                <Text style={styles.inputButtonNotify} >
-                  <Image
-                    style={styles.img}
-                    source={require(`../images/realtor.png`)}
-                  />
-                </Text>
-                <Text style={styles.headerTitle}>
-                  {rowData.task}
-                </Text>
-                <Text style={styles.downArrow} >
-                  <Icon name="ios-arrow-down-outline" size={15} />
-                </Text>
+                  <Text style={styles.headerTitle}>
+                    {rowData.task}
+                  </Text>
+                  <Text style={styles.downArrow}>
+                    <Icon name="ios-arrow-down-outline" size={15} />
+                  </Text>
+                </View>
+                </TouchableHighlight>
+                <Popover
+                  isVisible={this.state.isVisible}
+                  eleVisible={this.state.eleVisible}
+                  fromRect={this.state.buttonRect}
+                  onClose={this.closePopover.bind(this)}
+                >
+                  <Text>I'm the content of this popover!</Text>
+                </Popover>
               </View>
             }
           />

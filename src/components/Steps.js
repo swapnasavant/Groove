@@ -17,13 +17,13 @@ const propTypes = {
 
 const styles = StyleSheet.create({
   toolbar: {
-    backgroundColor: '#FF4331',
+    backgroundColor: '#F74125',
     paddingTop: 30,
     paddingBottom: 10,
     flexDirection: 'row',
   },
   toolbarHeader: {
-    backgroundColor: '#FF4331',
+    backgroundColor: '#F74125',
     paddingTop: 30,
     paddingBottom: 10,
     flexDirection: 'row',
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   toolbarAuto: {
-    backgroundColor: '#FF4331',
+    backgroundColor: '#F74125',
     flexDirection: 'row',
     paddingLeft: 50,
   },
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    backgroundColor: '#ebeef0',
+    backgroundColor: '#FFFFFF',
     paddingTop: 30,
     paddingBottom: 10,
     flexDirection: 'row',
@@ -134,7 +134,7 @@ class Steps extends Component {
               {monthNames[new Date().getMonth()]} {new Date().getFullYear()}
           </Text>
         </View>
-        <LinearGradient colors={['#FF4331', '#FF4331', '#000000']} style={styles.linearGradient} />
+        <LinearGradient colors={['#FF4331', '#FF4331', '#CF5025']} style={styles.linearGradient} />
         <View style={styles.content}>
           <TimeLine
             dispatch={dispatch}
