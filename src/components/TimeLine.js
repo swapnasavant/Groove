@@ -80,136 +80,83 @@ class TimeLine extends Component {
 
   constructor() {
     super();
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    this.handleButtonPress = this.handleButtonPress.bind(this);
     this.state = {
-      dataSource: ds.cloneWithRows([
-        {
-          time: 'Today',
-          person: 'realtor',
-          task: 'Open Escrow Account',
-          content: 'Please open an escrow account.',
-        },
-        {
-          time: 'Tomorrow',
-          person: 'buyer',
-          task: 'Deposit 3% to escrow',
-          content: 'Withdraw cashier’s check for amount $45,000. Payable to “Orange Coast Title Company”. Notes should contain escrow number 12345. Hand over cashier’s check to realtor or escrow company.',
-        },
-        {
-          time: '08/08/2017',
-          person: 'realtor',
-          task: 'Title search and insurance',
-        },
-        {
-          time: '08/18/2017',
-          person: 'realtor',
-          task: 'Shop for mortgage',
-        },
-        {
-          time: '08/20/2017',
-          person: 'realtor',
-          task: 'Finalise a lender',
-        },
-        {
-          time: '08/26/2017',
-          person: 'realtor',
-          task: 'Fill in application',
-        },
-        {
-          time: '08/26/2017',
-          person: 'realtor',
-          task: 'Fill in application',
-        },
-        {
-          time: '08/26/2017',
-          person: 'realtor',
-          task: 'under writter task',
-        },
-        {
-          time: '08/29/2017',
-          person: 'realtor',
-          task: 'Get the necessary data',
-        },
-      ]),
+      dataSource: this.getDSValues(),
       isVisible: false,
       eleVisible: null,
       buttonRect: {},
     };
   }
 
-  handleButtonPress() {
-    const { dispatch } = this.props;
+  getDSValues() {
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    return ds.cloneWithRows([
+      {
+        time: 'Today',
+        person: 'realtor',
+        task: 'Open Escrow Account',
+        content: 'Please open an escrow account.',
+      },
+      {
+        time: 'Tomorrow',
+        person: 'buyer',
+        task: 'Deposit 3% to escrow',
+        content: 'Withdraw cashier’s check for amount $45,000. Payable to “Orange Coast Title Company”. Notes should contain escrow number 12345. Hand over cashier’s check to realtor or escrow company.',
+      },
+      {
+        time: '08/08/2017',
+        person: 'realtor',
+        task: 'Title search and insurance',
+      },
+      {
+        time: '08/18/2017',
+        person: 'realtor',
+        task: 'Shop for mortgage',
+      },
+      {
+        time: '08/20/2017',
+        person: 'realtor',
+        task: 'Finalise a lender',
+      },
+      {
+        time: '08/26/2017',
+        person: 'realtor',
+        task: 'Fill in application',
+      },
+      {
+        time: '08/26/2017',
+        person: 'realtor',
+        task: 'Fill in application',
+      },
+      {
+        time: '08/26/2017',
+        person: 'realtor',
+        task: 'under writter task',
+      },
+      {
+        time: '08/29/2017',
+        person: 'realtor',
+        task: 'Get the necessary data',
+      },
+    ]);
   }
 
   showPopover(ele) {
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
     this[ele].measure((ox, oy, width, height, px, py) => {
       this.setState({
         isVisible: true,
         eleVisible: ele,
-        dataSource: ds.cloneWithRows([
-          {
-            time: 'Today',
-            person: 'realtor',
-            task: 'Open Escrow Account',
-            content: 'Please open an escrow account.',
-          },
-          {
-            time: 'Tomorrow',
-            person: 'buyer',
-            task: 'Deposit 3% to escrow',
-            content: 'Withdraw cashier’s check for amount $45,000. Payable to “Orange Coast Title Company”. Notes should contain escrow number 12345. Hand over cashier’s check to realtor or escrow company.',
-          },
-          {
-            time: '08/08/2017',
-            person: 'realtor',
-            task: 'Title search and insurance',
-          },
-          {
-            time: '08/18/2017',
-            person: 'realtor',
-            task: 'Shop for mortgage',
-          },
-          {
-            time: '08/20/2017',
-            person: 'realtor',
-            task: 'Finalise a lender',
-          },
-          {
-            time: '08/26/2017',
-            person: 'realtor',
-            task: 'Fill in application',
-          },
-          {
-            time: '08/27/2017',
-            person: 'realtor',
-            task: 'Fill in application',
-          },
-          {
-            time: '08/28/2017',
-            person: 'realtor',
-            task: 'under writter task',
-          },
-          {
-            time: '08/29/2017',
-            person: 'realtor',
-            task: 'Get the necessary data',
-          },
-          {
-            time: '08/30/2017',
-            person: 'realtor',
-            task: 'Get what necessary data',
-          },
-        ]),
+        dataSource: this.getDSValues(),
         buttonRect: { x: px, y: py, width, height },
       });
     });
   }
 
   closePopover() {
-    this.setState({ isVisible: false });
+    this.setState({
+      eleVisible: null,
+      dataSource: this.getDSValues(),
+    });
   }
 
   isVisible(eleVisible, wrapper) {
