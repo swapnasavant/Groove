@@ -12,7 +12,6 @@ import React, { Component, PropTypes } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Popover from './Popover';
-import Steps from './Steps';
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -176,25 +175,25 @@ class TimeLine extends Component {
                   ref={(e) => { this[`${rowData.time}Wrapper`] = e; }}
                   style={styles.button} onPress={this.showPopover.bind(this, `${rowData.time}Wrapper`)}
                 >
-                <View style={styles.toolbarHeader}>
-                  <TouchableOpacity                  >
-                    <Text style={styles.inputButtonHome} >
-                      {rowData.time}
+                  <View style={styles.toolbarHeader}>
+                    <TouchableOpacity>
+                      <Text style={styles.inputButtonHome} >
+                        {rowData.time}
+                      </Text>
+                    </TouchableOpacity>
+                    <Text style={styles.inputButtonNotify} >
+                      <Image
+                        style={styles.img}
+                        source={require(`../images/realtor.png`)}
+                      />
                     </Text>
-                  </TouchableOpacity>
-                  <Text style={styles.inputButtonNotify} >
-                    <Image
-                      style={styles.img}
-                      source={require(`../images/realtor.png`)}
-                    />
-                  </Text>
-                  <Text style={styles.headerTitle}>
-                    {rowData.task}
-                  </Text>
-                  <Text style={styles.downArrow}>
-                    <Icon name="ios-arrow-down-outline" size={15} />
-                  </Text>
-                </View>
+                    <Text style={styles.headerTitle}>
+                      {rowData.task}
+                    </Text>
+                    <Text style={styles.downArrow}>
+                      <Icon name="ios-arrow-down-outline" size={15} />
+                    </Text>
+                  </View>
                 </TouchableHighlight>
                 <Popover
                   isVisible={this.isVisible(this.state.eleVisible, `${rowData.time}Wrapper`)}
