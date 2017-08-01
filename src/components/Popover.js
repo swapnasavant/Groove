@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   popover: {
-    backgroundColor: 'red',
+    backgroundColor: '#EFEFEF',
     position: 'absolute',
     shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 5 },
     shadowRadius: 2,
     shadowOpacity: 0.8,
   },

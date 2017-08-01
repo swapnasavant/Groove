@@ -1,5 +1,6 @@
 import {
   StyleSheet,
+  Dimensions,
   ListView,
   Text,
   Image,
@@ -16,6 +17,7 @@ import Popover from './Popover';
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   timelineHeader: {
@@ -27,6 +29,17 @@ const styles = StyleSheet.create({
     width: 1,
     backgroundColor: '#979797',
     zIndex: 0,
+  },
+  popoverContent: {
+    color: '#000',
+    fontSize: 10,
+    fontWeight: 'bold',
+    minWidth: SCREEN_WIDTH,
+    paddingTop: 30,
+    paddingBottom: 10,
+    flexDirection: 'row',
+    textAlign: 'center',
+    flex: 1,
   },
   toolbarHeader: {
     paddingTop: 30,
@@ -201,7 +214,9 @@ class TimeLine extends Component {
                   fromRect={this.state.buttonRect}
                   onClose={this.closePopover.bind(this)}
                 >
-                  <Text>I'm the content of this popover!</Text>
+                  <Text style={styles.popoverContent}>
+                     {rowData.content}
+                  </Text>
                 </Popover>
               </View>
             }
