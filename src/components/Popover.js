@@ -400,6 +400,8 @@ class Popover extends Component {
         return null;
     }
 
+    console.log(this.props);
+
     const { popoverOrigin, placement } = this.state;
     const extendedStyles = this._getExtendedStyles();
     const contentStyle = [styles.content, ...extendedStyles.content];

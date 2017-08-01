@@ -183,12 +183,12 @@ class TimeLine extends Component {
             task: 'Fill in application',
           },
           {
-            time: '08/26/2017',
+            time: '08/27/2017',
             person: 'realtor',
             task: 'Fill in application',
           },
           {
-            time: '08/26/2017',
+            time: '08/28/2017',
             person: 'realtor',
             task: 'under writter task',
           },
@@ -198,7 +198,7 @@ class TimeLine extends Component {
             task: 'Get the necessary data',
           },
           {
-            time: '08/29/2017',
+            time: '08/30/2017',
             person: 'realtor',
             task: 'Get what necessary data',
           },
@@ -210,6 +210,10 @@ class TimeLine extends Component {
 
   closePopover() {
     this.setState({ isVisible: false });
+  }
+
+  isVisible(eleVisible, wrapper) {
+    return eleVisible === wrapper;
   }
 
   render() {
@@ -246,7 +250,7 @@ class TimeLine extends Component {
                 </View>
                 </TouchableHighlight>
                 <Popover
-                  isVisible={this.state.isVisible}
+                  isVisible={this.isVisible(this.state.eleVisible, `${rowData.time}Wrapper`)}
                   eleVisible={this.state.eleVisible}
                   fromRect={this.state.buttonRect}
                   onClose={this.closePopover.bind(this)}
