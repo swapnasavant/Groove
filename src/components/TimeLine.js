@@ -20,6 +20,9 @@ const propTypes = {
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+  container: {
+    zIndex: 0,
+  },
   timelineHeader: {
     position: 'absolute',
     top: 0,
@@ -31,11 +34,12 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
   popoverContent: {
-    color: '#000',
+    color: '#FFFFFF',
     fontSize: 10,
     fontWeight: 'bold',
     minWidth: SCREEN_WIDTH,
     paddingTop: 30,
+    lineHeight: 20,
     paddingBottom: 10,
     flexDirection: 'row',
     textAlign: 'center',
@@ -53,16 +57,17 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: 'bold',
     flex: 1,
+    zIndex: 0,
   },
   inputButtonNotify: {
     top: 13,
     left: 85,
     lineHeight: 34,
-    zIndex: 2,
     position: 'absolute',
     color: '#fff',
+    zIndex: 0,
     textAlign: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'transparent',
   },
   img: {
     width: 28,
