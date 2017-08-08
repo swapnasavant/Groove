@@ -19,6 +19,11 @@ const propTypes = {
 };
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
+const IMAGES = {
+  realtor: require('../images/realtor.png'),
+  buyer: require('../images/buyer.png'),
+};
+
 const styles = StyleSheet.create({
   container: {
     zIndex: 0,
@@ -137,7 +142,7 @@ class TimeLine extends Component {
       },
       {
         time: '08/26/2017',
-        person: 'realtor',
+        person: 'buyer',
         task: 'Fill in application',
       },
       {
@@ -202,7 +207,7 @@ class TimeLine extends Component {
                     <Text style={styles.inputButtonNotify} >
                       <Image
                         style={styles.img}
-                        source={require(`../images/realtor.png`)}
+                        source={IMAGES[`${rowData.person}`]}
                       />
                     </Text>
                     <Text style={styles.headerTitle}>
