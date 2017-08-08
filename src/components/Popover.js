@@ -15,7 +15,7 @@ const noop = () => {};
 const styles = StyleSheet.create({
   container: {
     opacity: 0,
-    top: 0,
+    top: 50,
     bottom: 0,
     left: 0,
     right: 0,
@@ -34,12 +34,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   popover: {
-    backgroundColor: '#EFEFEF',
+    backgroundColor: 'black',
     position: 'absolute',
     shadowColor: 'black',
+    zIndex: 10,
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 2,
     shadowOpacity: 0.8,
+    flex: 1,
   },
   content: {
     borderRadius: 3,
@@ -295,14 +297,12 @@ class Popover extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.props.onClose}>
         <View style={[styles.container, contentSizeAvailable && styles.containerVisible]}>
-          <Animated.View style={[styles.background]} />
           <Animated.View
             style={[styles.popover, {
               top: popoverOrigin.y,
               left: popoverOrigin.x,
             }]}
           >
-            <Animated.View />
             <Animated.View
               ref={(e) => { this.content = e; }}
               onLayout={this.measureContent.bind(this)}
